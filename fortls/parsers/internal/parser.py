@@ -855,7 +855,9 @@ class FortranFile:
         if path:
             _, file_ext = os.path.splitext(os.path.basename(path))
             if pp_suffixes:
-                self.preproc = file_ext in pp_suffixes
+                if file_ext in pp_suffixes:
+                    self.preproc = True
+                #self.preproc = file_ext in pp_suffixes
             else:
                 self.preproc = file_ext == file_ext.upper()
         self.COMMENT_LINE_MATCH, self.DOC_COMMENT_MATCH = self.get_comment_regexs()
